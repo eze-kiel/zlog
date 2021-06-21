@@ -6,6 +6,7 @@ import (
 	"github.com/fatih/color"
 )
 
+// Debug logs a message at the debug level
 func (l *Logger) Debug(message string) {
 	if l.level <= DebugLvl {
 		if l.useColors {
@@ -16,6 +17,7 @@ func (l *Logger) Debug(message string) {
 	}
 }
 
+// Info logs a message at the info level
 func (l *Logger) Info(message string) {
 	if l.level <= InfoLvl {
 		if l.useColors {
@@ -26,6 +28,7 @@ func (l *Logger) Info(message string) {
 	}
 }
 
+// Warn logs a message at the warn level
 func (l *Logger) Warn(message string) {
 	if l.level <= WarnLvl {
 		if l.useColors {
@@ -36,6 +39,7 @@ func (l *Logger) Warn(message string) {
 	}
 }
 
+// Error logs a message at the error level
 func (l *Logger) Error(message string) {
 	if l.level <= ErrorLvl {
 		if l.useColors {
@@ -46,6 +50,7 @@ func (l *Logger) Error(message string) {
 	}
 }
 
+// Fatal logs a message at the fatal level
 func (l *Logger) Fatal(message string) {
 	if l.level <= FatalLvl {
 		if l.useColors {

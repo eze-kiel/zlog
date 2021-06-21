@@ -16,10 +16,9 @@ func main() {
 	if err := l.ParseLevel("warn"); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(l.GetLogLevel())
+
 	l.Info("you cannot see me!")
 	l.Warn("but you can see me!!")
 	l.Error("oops, an error !")
-
 	l.Fatal("this one is going to be fatal... :(")
 }
