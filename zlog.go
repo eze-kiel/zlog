@@ -86,6 +86,12 @@ func (l *Logger) UseColors(value bool) {
 	l.useColors = value
 }
 
+// SetOutputFileDescriptor allows the user to choose the fd that will be used to
+// log
+func (l *Logger) SetOutputFileDescriptor(output io.Writer) {
+	l.fd = output
+}
+
 // log writes a log line to the fd set
 func (l *Logger) log(pfx, msg string) {
 	l.mutex.Lock()
