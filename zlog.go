@@ -37,6 +37,7 @@ type Logger struct {
 	fatalPrefix   string
 }
 
+// NewLogger creates a new logger object with default values set
 func NewLogger() *Logger {
 	return &Logger{
 		mutex:         &sync.Mutex{},
@@ -55,13 +56,15 @@ func NewLogger() *Logger {
 	}
 }
 
+// ParseLevel reads from a string an tries to set the logger's level according
+// to the value provided. It returns an error if it can not parse the level
 func (l *Logger) ParseLevel(level string) error {
 	switch level {
 	case "debug":
 		l.level = DebugLvl
 	case "info":
 		l.level = InfoLvl
-	case "warn":
+	case "warn", "warning":
 		l.level = WarnLvl
 	case "err", "error":
 		l.level = ErrorLvl
@@ -73,14 +76,17 @@ func (l *Logger) ParseLevel(level string) error {
 	return nil
 }
 
+// GetLogLevel returns the logger's current log level
 func (l Logger) GetLogLevel() int {
 	return l.level
 }
 
+// UseColors allows the user to create colored logs
 func (l *Logger) UseColors(value bool) {
 	l.useColors = value
 }
 
+// log writes a log line to the fd set
 func (l *Logger) log(pfx, msg string) {
 	l.mutex.Lock()
 	defer l.mutex.Unlock()
