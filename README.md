@@ -44,6 +44,12 @@ func main() {
 }
 ```
 
+## Documentation
+
+You can get the whole documentation here:
+
+[https://pkg.go.dev/github.com/eze-kiel/zlog](https://pkg.go.dev/github.com/eze-kiel/zlog)
+
 ## License
 
 MIT
