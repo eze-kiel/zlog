@@ -17,10 +17,6 @@ const (
 	FatalLvl
 )
 
-const (
-	timeFormat = "15:04:05"
-)
-
 type Logger struct {
 	mutex         *sync.Mutex
 	level         int
