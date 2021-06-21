@@ -75,6 +75,10 @@ func (l Logger) GetLogLevel() int {
 	return l.level
 }
 
+func (l *Logger) UseColors(value bool) {
+	l.useColors = value
+}
+
 func (l *Logger) log(pfx, msg string) {
 	l.mutex.Lock()
 	defer l.mutex.Unlock()
