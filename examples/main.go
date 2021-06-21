@@ -20,5 +20,7 @@ func main() {
 	l.Info("you cannot see me!")
 	l.Warn("but you can see me!!")
 	l.Error("oops, an error !")
+
+	l.UseColors(false)
 	l.Fatal("this one is going to be fatal... :(")
 }
