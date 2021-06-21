@@ -2,7 +2,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/eze-kiel/zlog.svg)](https://pkg.go.dev/github.com/eze-kiel/zlog)
 
-A small logging package for Go, with cool features.
+A small, thread-safe logging package for Go, with cool features.
 
 ## Getting started
 
