@@ -29,21 +29,23 @@ type Logger struct {
 	logTime   bool
 	useColors bool
 
-	debugPrefix string
-	infoPrefix  string
-	warnPrefix  string
-	errorPrefix string
-	fatalPrefix string
+	prefixBorders [2]string
+	debugPrefix   string
+	infoPrefix    string
+	warnPrefix    string
+	errorPrefix   string
+	fatalPrefix   string
 }
 
 func NewLogger() *Logger {
 	return &Logger{
-		mutex:     &sync.Mutex{},
-		buffer:    []byte{},
-		level:     InfoLvl,
-		fd:        os.Stderr,
-		logTime:   true,
-		useColors: true,
+		mutex:         &sync.Mutex{},
+		buffer:        []byte{},
+		level:         InfoLvl,
+		fd:            os.Stderr,
+		logTime:       true,
+		useColors:     true,
+		prefixBorders: [2]string{"", ""},
 
 		debugPrefix: debugPrefix,
 		infoPrefix:  infoPrefix,
@@ -90,7 +92,9 @@ func (l *Logger) log(pfx, msg string) {
 		l.buffer = append(l.buffer, ' ')
 	}
 
+	l.buffer = append(l.buffer, []byte(l.prefixBorders[0])...)
 	l.buffer = append(l.buffer, []byte(pfx)...)
+	l.buffer = append(l.buffer, []byte(l.prefixBorders[1])...)
 	l.buffer = append(l.buffer, ' ')
 
 	l.buffer = append(l.buffer, []byte(msg)...)

@@ -47,3 +47,7 @@ func (l *Logger) GetErrorPrefix() string {
 func (l *Logger) GetFatalPrefix() string {
 	return l.fatalPrefix
 }
+
+func (l *Logger) SetPrefixBorders(first, last string) {
+	l.prefixBorders = [2]string{first, last}
+}
