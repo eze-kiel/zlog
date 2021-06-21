@@ -18,23 +18,25 @@ const (
 )
 
 const (
-	timeFormat = "[15:04:05]"
+	timeFormat = "15:04:05"
 )
 
 type Logger struct {
-	mutex     *sync.Mutex
-	level     int
-	buffer    []byte
-	fd        io.Writer
-	logTime   bool
-	useColors bool
-
+	mutex         *sync.Mutex
+	level         int
+	buffer        []byte
+	fd            io.Writer
+	logTime       bool
+	useColors     bool
+	timeFormat    string
 	prefixBorders [2]string
-	debugPrefix   string
-	infoPrefix    string
-	warnPrefix    string
-	errorPrefix   string
-	fatalPrefix   string
+	timeBorders   [2]string
+
+	debugPrefix string
+	infoPrefix  string
+	warnPrefix  string
+	errorPrefix string
+	fatalPrefix string
 }
 
 // NewLogger creates a new logger object with default values set
@@ -46,7 +48,9 @@ func NewLogger() *Logger {
 		fd:            os.Stderr,
 		logTime:       true,
 		useColors:     true,
+		timeFormat:    timeFormat,
 		prefixBorders: [2]string{"", ""},
+		timeBorders:   [2]string{"", ""},
 
 		debugPrefix: debugPrefix,
 		infoPrefix:  infoPrefix,
@@ -100,7 +104,9 @@ func (l *Logger) log(pfx, msg string) {
 	l.buffer = []byte{}
 
 	if l.logTime {
+		l.buffer = append(l.buffer, []byte(l.timeBorders[0])...)
 		l.buffer = append(l.buffer, []byte(time.Now().Format(timeFormat))...)
+		l.buffer = append(l.buffer, []byte(l.timeBorders[1])...)
 		l.buffer = append(l.buffer, ' ')
 	}
 
