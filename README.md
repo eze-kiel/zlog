@@ -7,7 +7,7 @@ A small, thread-safe logging package for Go, with cool features.
 ## Getting started
 
 ```
-$ go get github.com/eze-kiel/zlog
+go get github.com/eze-kiel/zlog
 ```
 
 ## Usage
